@@ -22,6 +22,7 @@ interface Props {
     url?: string
     images?: OgImage[]
   }
+  children?: React.ReactNode
 }
 
 const ogImage = ({ url, width, height, alt }: OgImage, index: number) => {
@@ -47,10 +48,16 @@ const ogImage = ({ url, width, height, alt }: OgImage, index: number) => {
   )
 }
 
-const SEO: FC<Props> = ({ title, description, openGraph, robots }) => {
+const SEO: FC<Props> = ({
+  title,
+  description,
+  openGraph,
+  robots,
+  children,
+}) => {
   return (
     <Head>
-      <title>
+      <title key="title">
         {title ? `${config.titleTemplate.replace(/%s/g, title)}` : config.title}
       </title>
       <meta
@@ -61,16 +68,17 @@ const SEO: FC<Props> = ({ title, description, openGraph, robots }) => {
       <meta
         key="og:type"
         property="og:type"
-        content={openGraph?.title ?? config.openGraph.title}
+        content={openGraph?.type ?? config.openGraph.type}
       />
       <meta
         key="og:title"
         property="og:title"
         content={
-          openGraph?.type ?? config.openGraph.type ?? title ?? config.title
+          openGraph?.title ?? config.openGraph.title ?? title ?? config.title
         }
       />
       <meta
+        key="og:description"
         property="og:description"
         content={
           openGraph?.description ??
@@ -122,6 +130,7 @@ const SEO: FC<Props> = ({ title, description, openGraph, robots }) => {
         name="googlebot"
         content={robots ?? 'index,follow'}
       ></meta>
+      {children}
     </Head>
   )
 }
