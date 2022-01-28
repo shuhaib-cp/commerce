@@ -1,6 +1,11 @@
 import Head from 'next/head'
-import { FC } from 'react'
+import { FC, Fragment, ReactNode } from 'react'
 import config from '@config/seo_meta.json'
+
+const storeBaseUrl =
+  process.env.NEXT_PUBLIC_STORE_URL ?? process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : null
 
 interface OgImage {
   url?: string
@@ -22,29 +27,35 @@ interface Props {
     url?: string
     images?: OgImage[]
   }
-  children?: React.ReactNode
+  children?: ReactNode
 }
 
 const ogImage = ({ url, width, height, alt }: OgImage, index: number) => {
+  // generate full URL for OG image url with store base URL
+  const imgUrl = storeBaseUrl ? new URL(url!, storeBaseUrl).toString() : url
   return (
-    <>
-      <meta key={`og:image${index}`} property="og:image" content={url} />
+    <Fragment key={`og:image:${index}`}>
       <meta
-        key={`og:image:width${index}`}
+        key={`og:image:url:${index}`}
+        property="og:image"
+        content={imgUrl}
+      />
+      <meta
+        key={`og:image:width:${index}`}
         property="og:image:width"
         content={width}
       />
       <meta
-        key={`og:image:height${index}`}
+        key={`og:image:height:${index}`}
         property="og:image:height"
         content={height}
       />
       <meta
-        key={`og:image:alt${index}`}
+        key={`og:image:alt:${index}`}
         property="og:image:alt"
         content={alt}
       />
-    </>
+    </Fragment>
   )
 }
 
@@ -55,6 +66,15 @@ const SEO: FC<Props> = ({
   robots,
   children,
 }) => {
+  /**
+   * @see https://nextjs.org/docs/api-reference/next/head
+   *
+   * meta or any other elementsneed to be contained as direct children of the Head element,
+   * or wrapped into maximum one level of <React.Fragment> or arrays
+   * otherwise the tags won't be correctly picked up on client-side navigations.
+   *
+   * The `key` property makes the tag is only rendered once,
+   */
   return (
     <Head>
       <title key="title">

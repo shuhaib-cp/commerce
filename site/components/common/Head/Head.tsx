@@ -1,4 +1,4 @@
-import { VFC } from 'react'
+import type { VFC } from 'react'
 import { SEO } from '@components/common'
 
 const Head: VFC = () => {
