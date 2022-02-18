@@ -10,6 +10,7 @@ import { ManagedUIContext } from '@components/ui/context'
 const Noop: FC = ({ children }) => <>{children}</>
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+
   const Layout = (Component as any).Layout || Noop
 
   useEffect(() => {
@@ -22,6 +23,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <ManagedUIContext>
         <Layout pageProps={pageProps}>
           <Component {...pageProps} />
+          
         </Layout>
       </ManagedUIContext>
     </>
