@@ -29,34 +29,25 @@ const dynamicProps = {
   loading: Loading,
 }
 
-const SignUpView = dynamic(
-  () => import('@components/auth/SignUpView'),
-  {
-    ...dynamicProps
-  }
-)
+const SignUpView = dynamic(() => import('@components/auth/SignUpView'), {
+  ...dynamicProps,
+})
 
 const ForgotPassword = dynamic(
   () => import('@components/auth/ForgotPassword'),
   {
-    ...dynamicProps
-  }
-)
-
-const FeatureBar = dynamic(
-  () => import('@components/common/FeatureBar'),
-  {
-    ...dynamicProps
-  }
-)
-
-const Modal = dynamic(
-  () => import('@components/ui/Modal'),
-  {
     ...dynamicProps,
-    ssr: false
   }
 )
+
+const FeatureBar = dynamic(() => import('@components/common/FeatureBar'), {
+  ...dynamicProps,
+})
+
+const Modal = dynamic(() => import('@components/ui/Modal'), {
+  ...dynamicProps,
+  ssr: false,
+})
 
 interface Props {
   pageProps: {

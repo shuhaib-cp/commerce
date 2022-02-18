@@ -3,8 +3,7 @@ import s from './MenuSidebarView.module.css'
 import { FC } from 'react'
 import { useUI } from '@components/ui/context'
 import SidebarLayout from '@components/common/SidebarLayout'
-import { Link as LinkProps} from '.'
-
+import { Link as LinkProps } from '.'
 
 interface MenuProps {
   links?: LinkProps[]

@@ -1,7 +1,7 @@
 import update from './immutability'
 import getSlug from './get-slug'
 import type { PrCategory, CustomerAccountInput, Document } from '../../schema'
-import { Page } from '../types/page';
+import { Page } from '../types/page'
 import { Customer } from '../types/customer'
 
 function normalizeProductOption(productOption: any) {
@@ -71,7 +71,7 @@ export function normalizePage(page: Document): Page {
     url: page.properties.url,
     body: page.properties.body,
     is_visible: page.properties.is_visible,
-    sort_order: page.properties.sort_order
+    sort_order: page.properties.sort_order,
   }
 }
 
@@ -105,7 +105,7 @@ export function normalizeCustomer(customer: CustomerAccountInput): Customer {
     lastName: customer.lastName,
     email: customer.emailAddress,
     userName: customer.userName,
-    isAnonymous: customer.isAnonymous
+    isAnonymous: customer.isAnonymous,
   }
 }
 
@@ -147,7 +147,7 @@ export function normalizeCategory(category: PrCategory): any {
 export function normalizeWishlistItem(
   item: any,
   config: any,
-  includeProducts=false
+  includeProducts = false
 ): any {
   if (includeProducts) {
     return {
