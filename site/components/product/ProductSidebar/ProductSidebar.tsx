@@ -78,7 +78,7 @@ const ProductSidebar: FC<ProductSidebarProps> = ({ product, className }) => {
         </Collapse>
         <Collapse title="Details">
           This is a limited edition production run. Printing starts when the
-          drop ends.Reminder: Bad Boys For Life.Shipping may take 10+ days due
+          drop ends.Reminder: Bad Boys For L
           to COVID-19.
         </Collapse>
       </div>
