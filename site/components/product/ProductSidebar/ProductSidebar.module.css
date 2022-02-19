@@ -75,7 +75,7 @@
   }
 
   .sidebar {
-    @apply col-span-4 py-6;
+    @apply col-span-5 py-6;
   }
 
   .imageContainer {

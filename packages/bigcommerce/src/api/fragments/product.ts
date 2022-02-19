@@ -42,6 +42,14 @@ export const productInfoFragment = /* GraphQL */ `
     entityId
     name
     path
+    sku
+    categories{
+      edges{
+        node{
+          name
+          path
+        }
+      }
     brand {
       entityId
     }
